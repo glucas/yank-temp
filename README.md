@@ -19,11 +19,11 @@ and have it pop up for a few seconds after a yank-temp buffer is
 created:
 
 ``` emacs-lisp
-  (defhydra hydra-setup-temp-buffer (:color blue :timeout 3 :post (temp-buffer-set-revert-point))
+  (defhydra hydra-setup-yank-temp (:color blue :timeout 3 :post (yank-temp-set-revert-point))
     ("l" lisp-interaction-mode "lisp")
     ("j" (progn (js-mode) (json-pretty-print-buffer)) "json")
     ("x" (progn (nxml-mode)) "xml")
     ("t" (progn (turn-on-orgtbl) (org-table-convert-region (point-min) (point-max) nil)) "table"))
 
-  (add-hook 'temp-buffer-initialized-hook #'hydra-setup-temp-buffer/body)
+  (add-hook 'yank-temp-initialized-hook #'hydra-setup-yank-temp/body)
 ```
